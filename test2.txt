@@ -1,1 +1,51 @@
-This is test3.txt 
+Basic structure of ResTAssured API and contents inside given(), when() & then()
+
+given()
+    content type, header(), body(), auth(), log(), config()...... etc
+
+| Feature              | Method                             | Example                                              |
+| -------------------- | ---------------------------------- | ---------------------------------------------------- |
+| **Headers**          | `.header()` / `.headers()`         | `.header("Content-Type", "application/json")`        |
+| **Query Params**     | `.queryParam()` / `.queryParams()` | `.queryParam("page", 2)`                             |
+| **Path Params**      | `.pathParam()` / `.pathParams()`   | `.pathParam("id", 10)`                               |
+| **Form Params**      | `.formParam()` / `.formParams()`   | `.formParam("key", "value")`                         |
+| **Request Body**     | `.body()`                          | `.body("{ \"name\": \"John\" }")`                    |
+| **Cookies**          | `.cookie()` / `.cookies()`         | `.cookie("session_id", "abc123")`                    |
+| **Content Type**     | `.contentType()`                   | `.contentType(ContentType.JSON)`                     |
+| **Accept Type**      | `.accept()`                        | `.accept(ContentType.JSON)`                          |
+| **Multi-part Files** | `.multiPart()`                     | `.multiPart("file", new File("test.txt"))`           |
+| **Authentication**   | `.auth()`                          | `.auth().basic("user", "pass")`                      |
+| **Relax HTTPS**      | `.relaxedHTTPSValidation()`        | `.relaxedHTTPSValidation()`                          |
+| **Custom Config**    | `.config()`                        | `.config(RestAssuredConfig.config().logConfig(...))` |
+| **Logging**          | `.log()`                           | `.log().all()` for full request logging              |
+
+
+when()
+    get(), post(), put(), patch(), delete(), options(), head()
+
+| HTTP Method | Function        | Example               |
+| ----------- | --------------- | --------------------- |
+| `get()`     | GET request     | `.get("/users")`      |
+| `post()`    | POST request    | `.post("/users")`     |
+| `put()`     | PUT request     | `.put("/users/1")`    |
+| `patch()`   | PATCH request   | `.patch("/users/1")`  |
+| `delete()`  | DELETE request  | `.delete("/users/1")` |
+| `options()` | OPTIONS request | `.options("/users")`  |
+| `head()`    | HEAD request    | `.head("/users")`     |
+
+
+then()
+    .statusCode(), .header() / .headers(), 	.contentType(), .body(), .time()
+
+
+    | Category                | Method                     | Example                                       |
+| ----------------------- | -------------------------- | --------------------------------------------- |
+| **Status Code**         | `.statusCode()`            | `.statusCode(200)`                            |
+| **Status Line**         | `.statusLine()`            | `.statusLine("HTTP/1.1 200 OK")`              |
+| **Headers**             | `.header()` / `.headers()` | `.header("Content-Type", "application/json")` |
+| **Body Assertions**     | `.body()`                  | `.body("data.id", equalTo(5))`                |
+| **Response Time**       | `.time()`                  | `.time(lessThan(2000L))`                      |
+| **Content Type**        | `.contentType()`           | `.contentType(ContentType.JSON)`              |
+| **Cookies**             | `.cookie()` / `.cookies()` | `.cookie("session_id", notNullValue())`       |
+| **Logging**             | `.log()`                   | `.log().all()`                                |
+| **Extracting Response** | `.extract()`               | `.extract().response()` (for saving response) |
